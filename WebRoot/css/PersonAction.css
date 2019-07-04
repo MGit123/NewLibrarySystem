@@ -1,0 +1,138 @@
+@CHARSET "UTF-8";
+
+ #a{
+    position:absolute;
+    top:15%;
+    left:30%;
+    height:250px;
+    width:300px;
+    background:#e4644b;
+    border-radius: 7px 7px 7px 7px;
+    display:none;
+    }
+    
+    #b{
+      position:absolute;
+      left:25%;
+      height:450px;
+      width:50%;
+      list-style:none;
+       display:none;
+       overflow:scroll;
+    }
+    
+    #c{
+    position:absolute;
+    top:10%;
+    left:30%;
+    height:320px;
+    width:320px;
+    list-style:none;
+    display:none;
+    font-size:16px;
+    }
+    
+    #d{
+      position:absolute;
+      left:25%;
+      height:450px;
+      width:50%;
+      list-style:none;
+      display:none;
+      list-style:none;
+      overflow:scroll;
+    }
+    
+    .t1{
+       margin-left:50px;
+       margin-top:30px;
+    }
+    
+    #cir{
+    position:absolute;
+    top:60px;
+    left:450px;
+    height:40px;
+    width:40px;
+    border-radius: 40px 0px 0px 0px;
+    background:#e4644b;
+    }
+   
+   #ci{
+    position:absolute;
+    top:60px;
+    left:430px;
+    height:40px;
+    width:40px;
+    border-radius: 40px 0px 0px 0px;
+    background:#e4644b;
+    }
+    
+   
+    
+    li{
+    list-style:none;
+    }
+    
+   .info{
+   height:100px;
+   width:490px;
+   background:white;
+   font-size:14px;
+   list-style: none;
+   border-radius: 5px 5px 5px 5px;
+   position:relative;
+   margin-bottom:10px;
+   }
+    
+   
+    
+    .u{
+    margin-top:30px;
+    height:10px;
+    margin-left:50px;
+    margin-right:5px;
+    }
+    
+    .lc {
+	cursor: pointer;
+	position:relative;
+	border-bottom:5px;
+	width: 300px;
+	height:50px;
+	padding:15px;
+	color: #f7f1e3;
+	box-sizing: border-box;
+}
+    
+    .icon {
+	float: left;
+	width: 35px;
+	height: 35px;
+	display:block;
+	position:absolute;
+	left:5px;
+	top:8px;
+}
+
+.te{
+	position:absolute;
+	left:60px;
+	top:8px;
+	width:200px;
+	height:30px;
+	border-radius: 4px 4px 4px 4px;
+}
+
+.lo{
+	position:absolute;
+	left:60px;
+	top:0px;
+	width:150px;
+	height:30px;
+	text-algin:center;
+	background:#e4644b;
+	border-radius: 3px 3px 3px 3px;
+	
+}
+   

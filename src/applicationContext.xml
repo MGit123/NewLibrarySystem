@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/context
+     http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+     http://www.springframework.org/schema/tx
+     http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+     http://www.springframework.org/schema/aop
+     http://www.springframework.org/schema/aop/spring-aop.xsd"
+    default-autowire="byName">
+    
+    <!-- 自动扫描 -->
+    <context:component-scan base-package="com.lib">
+       <!-- 扫描时跳过 @Controller 注解的JAVA类（控制器） -->
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    
+     <!-- 配置数据库信息 -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
+		<property name="url"
+			value="jdbc:mysql://"ip地址：端口号"/bookManage">
+		</property>
+		<property name="username" value="root"></property>
+		<property name="password" value="lgx123456"></property>
+	</bean>
+	
+	<!-- 配置sessionFactory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		
+	 <!--  <property name="packagesToScan">
+         <list>
+           <value>com.lib.entity</value>
+         </list>        
+          </property> -->
+		
+		<property name="hibernateProperties">
+			<props>
+			   <!-- 配置数据库的方言 -->
+			   <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+			   
+			    <!-- 显示Hibernate持久化操作所生成的SQL -->
+				<prop key="hibernate.show_sql">true</prop>
+				
+				 <!-- 将SQL脚本进行格式化后再输出 -->
+                <prop key="hibernate.format_sql">true</prop>
+                
+                  <!-- Hibernate根据实体自动生成数据库表-->
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+                
+                <prop key="hibernate.connection.autocommit">true</prop>
+			</props>
+		</property>
+		
+		<property name="annotatedClasses">
+			<list>
+				<value>com.lib.entity.User</value>
+				<value>com.lib.entity.Book</value>
+				<value>com.lib.entity.BorrowBook</value>
+				<value>com.lib.entity.Announce</value>
+			</list>
+		</property>
+		</bean>
+	
+	 <!-- 配置一个事务管理器 -->
+      <!-- 配置Hibernate的局部事务管理器，使用HibernateTransactionManager类 -->
+      <!-- 该类实现PlatformTransactionManager接口，是针对Hibernate的特定实现-->
+      <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+       
+         <!-- 配置HibernateTransactionManager时需要依注入SessionFactory的引用 -->
+         <property name="sessionFactory" ref="sessionFactory"></property>
+      </bean>
+
+	
+	   <!-- 配置事务切面Bean,指定事务管理器 -->
+       <tx:advice id="txAdvice" transaction-manager="transactionManager">
+        </tx:advice>
+	 <tx:annotation-driven transaction-manager="transactionManager"/>  
+	 
+	 </beans>
